@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="http://cdn.bootcss.com/react/0.14.7/react.min.js"></script>
+    <script src="http://cdn.bootcss.com/react/0.14.7/react-dom.min.js"></script>
+    <script src="http://cdn.bootcss.com/babel-core/5.8.33/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/babel">
+      var TestState= React.createClass({
+        getInitialState: function(){
+          alert("initalstate");
+          return {
+            color:'red',
+            fontSize:18
+          }
+        },
+        componentWillMount: function() {
+          alert('will mount');
+        },
+        componentDidMount: function(){
+          alert('did mount');
+          window.setTimeout(function(){
+            this.setState({
+              color:'green',
+              fontSize:25
+            })
+          }.bind(this),5000)
+        },
+        render: function (){
+          return <h1 style={this.state}>Hello world</h1>
+        }
+      });
+      ReactDOM.render(
+        <TestState/>,
+        document.getElementById('container')
+      )
+    </script>
+  </body>
+</html>
